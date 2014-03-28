@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   <meta charset="UTF-8">
+   <title>Introduction to Callbacks</title>
+     <script>
+      // declare the wizard
+      var wizard = 
+      {
+         // wizard attributes:
+         health: 500,
+         mana: 500,
+         // wizard spells:
+         spells: {
+          open_sesame: {mana_cost: 10},
+          chain_lightning: {mana_cost: 20},
+          fireball: {mana_cost: 30}
+         },
+         // wizard abilities
+
+         cast_spell: function(spell, callback) 
+         {
+            var caster = this;
+             var take_that = [caster.spells.open_sesame.mana_cost, 
+                              caster.spells.chain_lightning.mana_cost, 
+                              caster.spells.fireball.mana_cost];
+
+            var random2 = take_that[ Math.floor(take_that.length * Math.random()) ];
+            //console.log(random2);
+            var random = Math.random();
+            if (random < .21)
+            {
+              console.log("Your spell ricocheted and hit a tree. Too bad!");
+            }
+            else
+            {
+              var spell_name;
+              (wizard.mana) -=random2;
+              if(spell === this.spells.fireball)
+              {
+                spell_name = "fireball";
+              }
+              else if (spell === this.spells.chain_lightning)
+              {
+                spell_name = "chain lightning";
+              }
+              else 
+              {
+                spell_name = "open sesame";
+              }
+              console.log(spell_name + " casted! Yea SUCCESS! The wizard's current mana pool is "+caster.mana);
+            }
+              callback();
+          },
+           update_wizard_mana: function() //this is my callback function.
+           {
+            var tired_caster = this; //this is so I can access 'this'
+            console.log("Wizard NOW has " + tired_caster.wizard.mana + " power left"); //this gives final tally
+          }
+        };
+           
+            
+        
+           //console.log(wizard.spells.fireball['mana_cost']);
+
+      //console.log(wizard.mana);
+      wizard.cast_spell(wizard.spells.fireball, wizard.update_wizard_mana);
+       wizard.cast_spell(wizard.spells.chain_lightning, wizard.update_wizard_mana);
+     // wizard.update_wizard_mana();
+     //console.log(wizard.cast_spell);
+
+     </script>
+  </head>
+  <body>
+  </body>
+</html>

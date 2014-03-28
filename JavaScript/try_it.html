@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   <meta charset="UTF-8">
+   	<script>
+	function call_me(callback)
+	{
+		callback();
+	}
+
+	call_me(function(){
+		alert("you called?");
+	});
+
+
+	function call_response()
+	{
+		alert("you're pretty!");		
+	}
+
+	call_me(call_response);
+	//confirm('AND YOU ARE AMAZING!');
+
+	var calling = function()
+	{
+		alert("Now enough stalling and make something cool!")
+	}
+
+	call_me(calling);
+ 	</script>
+  </head>
+  <body>
+  </body>
+</html>
